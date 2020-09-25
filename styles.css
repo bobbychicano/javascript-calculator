@@ -38,6 +38,22 @@ body {
   border: 2px solid #2196F3;
   border-radius: 13px;
   background-color: #FDF1FF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.output {
+  border: 1px solid green;
+  width: 90%;
+  height: 90%;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  max-height: 90%;
+  max-width: 90%;
+  font-size: 400%;
 }
 
 .buttons {
