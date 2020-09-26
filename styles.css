@@ -8,11 +8,19 @@ body {
   background-color: #FFF9C4;
 }
 
+h1 {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  text-align: center;
+  margin-top: 30px;
+  font-family: 'Rock Salt', cursive;
+}
+
 .calculator-box {
   width: 35%;
   height: 90vh;
   margin: auto;
-  margin-top: 10%;
+  margin-top: 5%;
   margin-bottom: 5%;
   border: 2px solid #2196F3;
   border-radius: 15px;
