@@ -44,16 +44,18 @@ body {
 }
 
 .output {
-  border: 1px solid green;
-  width: 90%;
+  /*border: 1px solid green;*/
+  width: 92%;
   height: 90%;
   text-align: right;
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   max-height: 90%;
-  max-width: 90%;
-  font-size: 400%;
+  max-width: 92%;
+  font-size: 550%;
+  font-family: 'VT323', monospace;
+  color: #2E7D32;
 }
 
 .buttons {
@@ -116,7 +118,3 @@ body {
   column-gap: 10px;
   row-gap: 15px;
 }
-
-/*
-green numbers
-*/
