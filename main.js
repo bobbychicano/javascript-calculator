@@ -43,6 +43,27 @@ const division = function(a, b, ...numbers) {
 // add this condition to the operator() function so that they can't even input 0 into my division() function.
 
 // takes an operator and 2 numbers and then calls one of the above functions on the numbers.
-const operate = function(a, b, mathematics) {
-  return mathematics(a, b);
+const operate = function(a, mathematics, b) {
+  switch (mathematics) {
+    case '+':
+    mathematics = addition;
+    break;
+
+    case '-':
+    mathematics = subtraction;
+    break;
+
+    case '*':
+    mathematics = multiplication;
+    break;
+
+    case '/':
+    mathematics = division;
+    break;
+
+    default:
+    console.log('Not a valid operator.');
+  }
+
+  console.log(mathematics(a, b));
 };
