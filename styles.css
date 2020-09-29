@@ -93,7 +93,9 @@ h1 {
 }
 
 .sign,
-.digit {
+.digit,
+.clear,
+.equals {
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -106,12 +108,16 @@ h1 {
   background-color: #B61971;
 }
 
-.digit {
+.digit,
+.clear,
+.equals {
   background-color: #1971B6;
 }
 
 .sign:active,
-.digit:active {
+.digit:active,
+.clear:active,
+.equals:active {
   cursor: pointer;
   color: white;
   box-shadow: 0 3px 0 #546E7A;

@@ -74,18 +74,25 @@ const operate = function(a, mathematics, b) {
 
 let displayValue = document.querySelector('.output');
 
+/*
 let buttonSeven = document.querySelector('.seven');
 console.log(buttonSeven);
 
-/*
 buttonSeven.addEventListener('click', function() {
   displayValue.textContent = '7';
 });
 */
 
-let 
+let allDigits = document.querySelectorAll('.digit');
+console.log(allDigits);
+
+for (let i = 0; i < allDigits.length; i++) {
+  allDigits[i].addEventListener('click', function(e) {
+    displayValue.textContent = e.target.textContent;
+  })
+};
 
 //this motherfucker works, which could lead to a simplified version of the functionality I want
-buttonSeven.addEventListener('click', function(e) {
-  displayValue.textContent = e.target.textContent;
-});
+//buttonSeven.addEventListener('click', function(e) {
+//  displayValue.textContent = e.target.textContent;
+//});
