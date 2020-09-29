@@ -67,3 +67,25 @@ const operate = function(a, mathematics, b) {
 
   console.log(mathematics(a, b));
 };
+
+
+// Create the functions that populate the display when you click the number buttons… you should be storing
+// the ‘display value’ in a variable somewhere for use in the next step.
+
+let displayValue = document.querySelector('.output');
+
+let buttonSeven = document.querySelector('.seven');
+console.log(buttonSeven);
+
+/*
+buttonSeven.addEventListener('click', function() {
+  displayValue.textContent = '7';
+});
+*/
+
+let 
+
+//this motherfucker works, which could lead to a simplified version of the functionality I want
+buttonSeven.addEventListener('click', function(e) {
+  displayValue.textContent = e.target.textContent;
+});
