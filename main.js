@@ -74,21 +74,12 @@ const operate = function(a, mathematics, b) {
 
 let displayValue = document.querySelector('.output');
 
-/*
-let buttonSeven = document.querySelector('.seven');
-console.log(buttonSeven);
-
-buttonSeven.addEventListener('click', function() {
-  displayValue.textContent = '7';
-});
-*/
-
 let allDigits = document.querySelectorAll('.digit');
-console.log(allDigits);
+// console.log(allDigits);
 
 for (let i = 0; i < allDigits.length; i++) {
   allDigits[i].addEventListener('click', function(e) {
-    displayValue.textContent = e.target.textContent;
+    displayValue.textContent = displayValue.textContent + e.target.textContent;
   })
 };
 
@@ -96,3 +87,11 @@ for (let i = 0; i < allDigits.length; i++) {
 //buttonSeven.addEventListener('click', function(e) {
 //  displayValue.textContent = e.target.textContent;
 //});
+
+// clear button functionality
+
+let clearDisplay = document.querySelector('.AC');
+
+clearDisplay.addEventListener('click', function() {
+  displayValue.textContent = '';
+});
