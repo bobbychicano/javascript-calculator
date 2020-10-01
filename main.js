@@ -1,3 +1,5 @@
+'use strict'
+
 let a = '';
 let b = '';
 let mathematics = '';
@@ -92,6 +94,9 @@ for (let i = 0; i < allDigits.length; i++) {
     // stores a number each time a number button is clicked concatenating the numbers to store the most
     // recent number.
     numberStorage = +(displayValue.textContent);
+
+    //i have to add a condition on the digits in case they are clicked when there is already a solution
+    //on the screen
   })
 };
 
@@ -108,6 +113,8 @@ const clearDisplay = document.querySelector('.AC');
 clearDisplay.addEventListener('click', function() {
   displayValue.textContent = '';
   numberStorage = '';
+  a = '';
+  b = '';
 });
 
 // addition button functionality
@@ -115,18 +122,23 @@ clearDisplay.addEventListener('click', function() {
 const additionButton = document.querySelector('.plus');
 
 additionButton.addEventListener('click', function() {
-  // addition();
 
-  if (displayValue.textContent.length > 0) {
+  //if the user clicks on the addition operator again (or another operator) after clicking on another
+  //operand, then those two operands must be operated on and the display needs to be updated accordingly
+  if (a) {
+    b = numberStorage;
+    console.log(b);
+    mathematics = '+';
+    displayValue.textContent = operate(a, '+', b);
+    a = operate(a, '+', b);
+  } else if (displayValue.textContent.length > 0) {
     a = numberStorage;
     console.log(a);
+    displayValue.textContent = '';
   }
 
   mathematics = '+';
   console.log(mathematics);
-
-  //clear out the display
-  displayValue.textContent = '';
 });
 
 const equalsButton = document.querySelector('.equals');
@@ -138,5 +150,4 @@ equalsButton.addEventListener('click', function() {
   }
 
   displayValue.textContent = operate(a, '+', b);
-
 })
