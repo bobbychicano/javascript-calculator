@@ -1,3 +1,6 @@
+let a = '';
+let b = '';
+let mathematics = '';
 
 // addition, subtraction, multiplication, and division functions
 const addition = function(a, b, ...numbers) {
@@ -72,16 +75,27 @@ const operate = function(a, mathematics, b) {
 // Create the functions that populate the display when you click the number buttons… you should be storing
 // the ‘display value’ in a variable somewhere for use in the next step.
 
-let displayValue = document.querySelector('.output');
+const displayValue = document.querySelector('.output');
 
-let allDigits = document.querySelectorAll('.digit');
+const allDigits = document.querySelectorAll('.digit');
 // console.log(allDigits);
+
+// the variable to store the numbers clicked on
+let numberStorage = '';
 
 for (let i = 0; i < allDigits.length; i++) {
   allDigits[i].addEventListener('click', function(e) {
-    displayValue.textContent = displayValue.textContent + e.target.textContent;
+    if (displayValue.textContent.length < 10) {
+      displayValue.textContent = displayValue.textContent + e.target.textContent;
+    }
+
+    // stores a number each time a number button is clicked concatenating the numbers to store the most
+    // recent number.
+    numberStorage = +(displayValue.textContent);
+    console.log(numberStorage);
   })
 };
+
 
 //this motherfucker works, which could lead to a simplified version of the functionality I want
 //buttonSeven.addEventListener('click', function(e) {
@@ -90,8 +104,40 @@ for (let i = 0; i < allDigits.length; i++) {
 
 // clear button functionality
 
-let clearDisplay = document.querySelector('.AC');
+const clearDisplay = document.querySelector('.AC');
 
 clearDisplay.addEventListener('click', function() {
   displayValue.textContent = '';
 });
+
+//store the display value as a number when an operator is clicked.
+
+/*
+const additionButton = document.querySelector('.plus');
+
+additionButton.addEventListener('click', function() {
+  // addition();
+
+  if (displayValue.textContent.length > 0) {
+    let a = +(displayValue.textContent);
+    console.log(a);
+  }
+
+  let mathematics = '+';
+  console.log(mathematics);
+
+  //clear out the display
+  displayValue.textContent = '';
+});
+
+const equalsButton = document.querySelector('.equals');
+
+equalsButton.addEventListener('click', function() {
+  if (displayValue.textContent.length > 0) {
+    let b = +(displayValue.textContent);
+    console.log(b);
+    operate(a, '+', b);
+  }
+
+})
+*/
