@@ -68,7 +68,7 @@ const operate = function(a, mathematics, b) {
     console.log('Not a valid operator.');
   }
 
-  console.log(mathematics(a, b));
+  return mathematics(a, b);
 };
 
 
@@ -92,7 +92,6 @@ for (let i = 0; i < allDigits.length; i++) {
     // stores a number each time a number button is clicked concatenating the numbers to store the most
     // recent number.
     numberStorage = +(displayValue.textContent);
-    console.log(numberStorage);
   })
 };
 
@@ -108,22 +107,22 @@ const clearDisplay = document.querySelector('.AC');
 
 clearDisplay.addEventListener('click', function() {
   displayValue.textContent = '';
+  numberStorage = '';
 });
 
-//store the display value as a number when an operator is clicked.
+// addition button functionality
 
-/*
 const additionButton = document.querySelector('.plus');
 
 additionButton.addEventListener('click', function() {
   // addition();
 
   if (displayValue.textContent.length > 0) {
-    let a = +(displayValue.textContent);
+    a = numberStorage;
     console.log(a);
   }
 
-  let mathematics = '+';
+  mathematics = '+';
   console.log(mathematics);
 
   //clear out the display
@@ -134,10 +133,10 @@ const equalsButton = document.querySelector('.equals');
 
 equalsButton.addEventListener('click', function() {
   if (displayValue.textContent.length > 0) {
-    let b = +(displayValue.textContent);
+    b = numberStorage;
     console.log(b);
-    operate(a, '+', b);
   }
 
+  displayValue.textContent = operate(a, '+', b);
+
 })
-*/
