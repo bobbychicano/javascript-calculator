@@ -39,6 +39,40 @@ h1 {
   background-color: #E3F2FD;
 }
 
+.buttons {
+  width: 90%;
+  margin: 5% auto;
+  height: 71%;
+  border: 2px solid #2196F3;
+  border-radius: 13px;
+  background-color: #BBDEFB;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: 150%;
+}
+
+button {
+  color: white;
+  border: none;
+  font-size: 100%;
+
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6px #B0BEC5;
+}
+
+button:active {
+  color: white;
+  box-shadow: 0 3px 0 #546E7A;
+}
+
+button:focus {
+  outline: none;
+}
+
 .results {
   width: 90%;
   margin: 5% auto 0 auto;
@@ -66,19 +100,6 @@ h1 {
   color: #2E7D32;
 }
 
-.buttons {
-  width: 90%;
-  margin: 5% auto;
-  height: 71%;
-  border: 2px solid #2196F3;
-  border-radius: 13px;
-  background-color: #BBDEFB;
-  display: flex;
-  flex-direction: column;
-  color: white;
-  font-size: 150%;
-}
-
 .items {
   width: 100%;
   display: grid;
@@ -92,18 +113,6 @@ h1 {
   column-gap: 10px;
 }
 
-.sign,
-.digit,
-.clear,
-.equals {
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 6px #B0BEC5;
-  /*cursor: pointer;*/
-}
-
 .sign {
   background-color: #B61971;
 }
@@ -112,15 +121,6 @@ h1 {
 .clear,
 .equals {
   background-color: #1971B6;
-}
-
-.sign:active,
-.digit:active,
-.clear:active,
-.equals:active {
-  /*cursor: pointer;*/
-  color: white;
-  box-shadow: 0 3px 0 #546E7A;
 }
 
 .numbers {
@@ -132,3 +132,28 @@ h1 {
   column-gap: 10px;
   row-gap: 15px;
 }
+
+/*
+.sign,
+.digit,
+.clear,
+.equals {
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 6px #B0BEC5;
+  cursor: pointer;
+}
+*/
+
+/*
+.sign:active,
+.digit:active,
+.clear:active,
+.equals:active {
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 3px 0 #546E7A;
+}
+*/

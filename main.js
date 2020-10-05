@@ -66,6 +66,10 @@ for (let i = 0; i < allDigits.length; i++) {
 };
 
 // Display render function
+
+//You should have a render() function that draws the screen, based on the data you're storing in your
+//variables
+
 let render = function(i) {
   displayValue.textContent += allDigits[i].textContent;
 };
@@ -77,7 +81,7 @@ let numberInput = function() {
 
 // clear button functionality
 
-const clearDisplay = document.querySelector('.AC');
+const clearDisplay = document.querySelector('.clear');
 
 clearDisplay.addEventListener('click', function() {
   displayValue.textContent = '';
