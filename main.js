@@ -1,9 +1,3 @@
-'use strict'
-
-let a = '';
-let b = '';
-let mathematics = '';
-
 // addition, subtraction, multiplication, and division functions
 const addition = function(a, b) {
   return a + b;
@@ -52,32 +46,48 @@ const displayValue = document.querySelector('.output');
 
 const allDigits = document.querySelectorAll('.digit');
 
-// the variable to store the numbers clicked on
-
-let numberStorage = '';
+const numberStorage = [];
 
 for (let i = 0; i < allDigits.length; i++) {
-  allDigits[i].addEventListener('click', function() {
-    if (displayValue.textContent.length < 10) {
-      render(i);
-    }
-    numberInput();
-  })
+  allDigits[i].addEventListener('click', numberInput)
 };
 
-// Display render function
+//calculator initialization function
+/*
+calculatorStart();
+
+function calculatorStart() {
+  let a = '';
+  let b = '';
+  let mathematics = '';
+
+  for (let i = 0; i < allDigits.length; i++) {
+    allDigits[i].addEventListener('click', numberInput)
+  };
+}
+*/
+
+// Number storage function
+function numberInput(e) {
+  numberStorage.push(+e.target.value);
+  console.log(numberStorage);
+};
+
+//another function that will concatenate the inputs?
 
 //You should have a render() function that draws the screen, based on the data you're storing in your
 //variables
 
-let render = function(i) {
+//The DOM should just be a way to display what your variables that you're working with are set to. Don't
+//read from the DOM.
+
+let render = function() {
   displayValue.textContent += allDigits[i].textContent;
+
+  // appendChild to display?
 };
 
-// Number storage function
-let numberInput = function() {
-  numberStorage = +(displayValue.textContent);
-};
+
 
 // clear button functionality
 
