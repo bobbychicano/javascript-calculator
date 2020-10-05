@@ -5,43 +5,20 @@ let b = '';
 let mathematics = '';
 
 // addition, subtraction, multiplication, and division functions
-const addition = function(a, b, ...numbers) {
-  if (numbers.length == 0) {
-    numbers[0] = 0;
-  };
-
-  let reducer = numbers.reduce((previous, current) => previous + current);
-  return a + b + reducer;
+const addition = function(a, b) {
+  return a + b;
 };
 
-const subtraction = function(a, b, ...numbers) {
-  if (numbers.length == 0) {
-    numbers[0] = 0;
-  };
-
-  let reducer = numbers.reduce((previous, current) => previous - current);
-
-  if (reducer < 0) {reducer *= -1};
-
-  return a - b - reducer;
+const subtraction = function(a, b) {
+  return a - b;
 };
 
-const multiplication = function(a, b, ...numbers) {
-  if (numbers.length == 0) {
-    numbers[0] = 1;
-  };
-
-  let reducer = numbers.reduce((previous, current) => previous * current);
-  return a * b * reducer;
+const multiplication = function(a, b) {
+  return a * b;
 };
 
-const division = function(a, b, ...numbers) {
-  if (numbers.length == 0) {
-    numbers[0] = 1;
-  };
-
-  let reducer = numbers.reduce((previous, current) => previous / current);
-  return a / b / reducer;
+const division = function(a, b) {
+  return a / b;
 };
 
 // how do I include a condition that wont allow users to divide by 0?
@@ -65,46 +42,38 @@ const operate = function(a, mathematics, b) {
     case '/':
     mathematics = division;
     break;
-
-    default:
-    console.log('Not a valid operator.');
   }
 
   return mathematics(a, b);
 };
 
 
-// Create the functions that populate the display when you click the number buttons… you should be storing
-// the ‘display value’ in a variable somewhere for use in the next step.
-
 const displayValue = document.querySelector('.output');
 
 const allDigits = document.querySelectorAll('.digit');
-// console.log(allDigits);
 
 // the variable to store the numbers clicked on
+
 let numberStorage = '';
 
 for (let i = 0; i < allDigits.length; i++) {
-  allDigits[i].addEventListener('click', function(e) {
+  allDigits[i].addEventListener('click', function() {
     if (displayValue.textContent.length < 10) {
-      displayValue.textContent = displayValue.textContent + e.target.textContent;
+      render(i);
     }
-
-    // stores a number each time a number button is clicked concatenating the numbers to store the most
-    // recent number.
-    numberStorage = +(displayValue.textContent);
-
-    //i have to add a condition on the digits in case they are clicked when there is already a solution
-    //on the screen
+    numberInput();
   })
 };
 
+// Display render function
+let render = function(i) {
+  displayValue.textContent += allDigits[i].textContent;
+};
 
-//this motherfucker works, which could lead to a simplified version of the functionality I want
-//buttonSeven.addEventListener('click', function(e) {
-//  displayValue.textContent = e.target.textContent;
-//});
+// Number storage function
+let numberInput = function() {
+  numberStorage = +(displayValue.textContent);
+};
 
 // clear button functionality
 
@@ -130,8 +99,8 @@ additionButton.addEventListener('click', function() {
     console.log(b);
     mathematics = '+';
     displayValue.textContent = operate(a, '+', b);
-    a = operate(a, '+', b);
-  } else if (displayValue.textContent.length > 0) {
+    a = +(displayValue.textContent);
+  } else if (!a && displayValue.textContent.length > 0) {
     a = numberStorage;
     console.log(a);
     displayValue.textContent = '';
