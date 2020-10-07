@@ -16,29 +16,26 @@ const division = function(a, b) {
 };
 
 // how do I include a condition that wont allow users to divide by 0?
-// add this condition to the operator() function so that they can't even input 0 into my division() function.
 
-// takes an operator and 2 numbers and then calls one of the above functions on the numbers.
+// Operate function. Takes an operator and 2 numbers and then calls one of the above functions
 const operate = function(a, mathematics, b) {
   switch (mathematics) {
     case '+':
-    mathematics = addition;
+    return addition(a, b);
     break;
 
     case '-':
-    mathematics = subtraction;
+    return subtraction(a, b);
     break;
 
     case '*':
-    mathematics = multiplication;
+    return multiplication(a, b);
     break;
 
     case '/':
-    mathematics = division;
+    return division(a, b);
     break;
   }
-
-  return mathematics(a, b);
 };
 
 
@@ -46,62 +43,42 @@ const displayValue = document.querySelector('.output');
 
 const allDigits = document.querySelectorAll('.digit');
 
-const numberStorage = [];
+//Decided to store the numbers in an array
+let numberStorage = [];
 
 for (let i = 0; i < allDigits.length; i++) {
-  allDigits[i].addEventListener('click', numberInput)
+  allDigits[i].addEventListener('click', numberPush)
 };
 
-//calculator initialization function
-/*
-calculatorStart();
+//function that calls both the numberInput and the render function when button is clicked
+function numberPush(e) {
+  numberInput(e);
+  render();
+};
 
-function calculatorStart() {
-  let a = '';
-  let b = '';
-  let mathematics = '';
-
-  for (let i = 0; i < allDigits.length; i++) {
-    allDigits[i].addEventListener('click', numberInput)
-  };
-}
-*/
-
-// Number storage function
+//Number storage function
 function numberInput(e) {
-  numberStorage.push(+e.target.value);
-  console.log(numberStorage);
+  if (numberStorage.length < 9) {
+    numberStorage.push(+e.target.value);
+    console.log(numberStorage);
+  }
 };
 
-//another function that will concatenate the inputs?
-
-//You should have a render() function that draws the screen, based on the data you're storing in your
-//variables
-
-//The DOM should just be a way to display what your variables that you're working with are set to. Don't
-//read from the DOM.
-
-let render = function() {
-  displayValue.textContent += allDigits[i].textContent;
-
-  // appendChild to display?
+//Render function
+function render() {
+  displayValue.innerHTML = numberStorage.join('');
 };
-
-
 
 // clear button functionality
-
 const clearDisplay = document.querySelector('.clear');
 
 clearDisplay.addEventListener('click', function() {
-  displayValue.textContent = '';
-  numberStorage = '';
-  a = '';
-  b = '';
+  displayValue.innerHTML = '';
+  numberStorage = [];
 });
 
+/*
 // addition button functionality
-
 const additionButton = document.querySelector('.plus');
 
 additionButton.addEventListener('click', function() {
@@ -134,3 +111,4 @@ equalsButton.addEventListener('click', function() {
 
   displayValue.textContent = operate(a, '+', b);
 })
+*/
