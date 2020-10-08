@@ -1,3 +1,68 @@
+
+const displayValue = document.querySelector('.output');
+const clearDisplay = document.querySelector('.clear');
+const allDigits = document.querySelectorAll('.digit');
+const plusSign = document.querySelector('.plus');
+const equalsButton = document.querySelector('.equals');
+
+let firstNumber = '';
+let operator = '';
+let secondNumber = '';
+
+for (let i = 0; i < allDigits.length; i++) {
+  allDigits[i].addEventListener('click', handleNumberInput)
+};
+
+clearDisplay.addEventListener('click', function() {
+  displayValue.innerHTML = '';
+	firstNumber = '';
+  secondNumber = '';
+  operator = '';
+});
+
+//addition button functionality
+plusSign.addEventListener('click', function() {
+  operator = '+';
+  console.log(operator);
+  displayValue.innerHTML = '';
+
+  /*
+  if (firstNumber && secondNumber) {
+    let thirdNumber = operate(+firstNumber, operator, +secondNumber);
+    console.log(thirdNumber);
+    firstNumber = thirdNumber;
+    secondNumber = '';
+  }
+  */
+})
+
+//equals button functionality
+equalsButton.addEventListener('click', function() {
+  displayValue.innerHTML = operate(+firstNumber, operator, +secondNumber);
+})
+
+//function that calls both the numberInput and the render function when button is clicked
+function handleNumberInput(e) {
+	const number = Number(e.target.value);
+  console.log(number);
+  addToActiveNumber(number);
+  render(number);
+};
+
+//Number storage function
+function addToActiveNumber(number) {
+	if (firstNumber && operator) {
+		secondNumber += number;
+	} else {
+		firstNumber += number;
+	}
+};
+
+//Render function
+function render(number) {
+  displayValue.innerHTML += number;
+}
+
 // addition, subtraction, multiplication, and division functions
 const addition = function(a, b) {
   return a + b;
@@ -15,67 +80,26 @@ const division = function(a, b) {
   return a / b;
 };
 
-// how do I include a condition that wont allow users to divide by 0?
-
 // Operate function. Takes an operator and 2 numbers and then calls one of the above functions
-const operate = function(a, mathematics, b) {
-  switch (mathematics) {
+const operate = function(a, operator, b) {
+  switch (operator) {
     case '+':
-    return addition(a, b);
-    break;
+			return addition(a, b);
+			break;
 
     case '-':
-    return subtraction(a, b);
-    break;
+			return subtraction(a, b);
+			break;
 
     case '*':
-    return multiplication(a, b);
-    break;
+			return multiplication(a, b);
+			break;
 
     case '/':
-    return division(a, b);
-    break;
+			return division(a, b);
+			break;
   }
 };
-
-
-const displayValue = document.querySelector('.output');
-
-const allDigits = document.querySelectorAll('.digit');
-
-//Decided to store the numbers in an array
-let numberStorage = [];
-
-for (let i = 0; i < allDigits.length; i++) {
-  allDigits[i].addEventListener('click', numberPush)
-};
-
-//function that calls both the numberInput and the render function when button is clicked
-function numberPush(e) {
-  numberInput(e);
-  render();
-};
-
-//Number storage function
-function numberInput(e) {
-  if (numberStorage.length < 9) {
-    numberStorage.push(+e.target.value);
-    console.log(numberStorage);
-  }
-};
-
-//Render function
-function render() {
-  displayValue.innerHTML = numberStorage.join('');
-};
-
-// clear button functionality
-const clearDisplay = document.querySelector('.clear');
-
-clearDisplay.addEventListener('click', function() {
-  displayValue.innerHTML = '';
-  numberStorage = [];
-});
 
 /*
 // addition button functionality
