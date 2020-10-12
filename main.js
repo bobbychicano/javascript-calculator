@@ -8,11 +8,13 @@ const equalsButton = document.querySelector('.equals');
 let firstNumber = '';
 let operator = '';
 let secondNumber = '';
+let thirdNumber = '';
 
 for (let i = 0; i < allDigits.length; i++) {
   allDigits[i].addEventListener('click', handleNumberInput)
 };
 
+//Clear functionality
 clearDisplay.addEventListener('click', function() {
   displayValue.innerHTML = '';
 	firstNumber = '';
@@ -20,20 +22,20 @@ clearDisplay.addEventListener('click', function() {
   operator = '';
 });
 
+//what do I want all of the operators to do?
+
 //addition button functionality
 plusSign.addEventListener('click', function() {
   operator = '+';
   console.log(operator);
-  displayValue.innerHTML = '';
 
-  /*
   if (firstNumber && secondNumber) {
-    let thirdNumber = operate(+firstNumber, operator, +secondNumber);
-    console.log(thirdNumber);
+    thirdNumber = operate(+firstNumber, operator, +secondNumber);
+    render(thirdNumber);
     firstNumber = thirdNumber;
     secondNumber = '';
   }
-  */
+
 })
 
 //equals button functionality
@@ -43,10 +45,17 @@ equalsButton.addEventListener('click', function() {
 
 //function that calls both the numberInput and the render function when button is clicked
 function handleNumberInput(e) {
-	const number = Number(e.target.value);
-  console.log(number);
-  addToActiveNumber(number);
-  render(number);
+  const number = Number(e.target.value);
+    console.log(number);
+
+    if (firstNumber && operator && secondNumber.length < 9) {
+      displayValue.innerHTML = '';
+      addToActiveNumber(number);
+      render(secondNumber);
+    } else if (firstNumber.length < 9) {
+      addToActiveNumber(number);
+      render(firstNumber);
+    }
 };
 
 //Number storage function
@@ -58,9 +67,8 @@ function addToActiveNumber(number) {
 	}
 };
 
-//Render function
-function render(number) {
-  displayValue.innerHTML += number;
+function render(calcItems) {
+  displayValue.innerHTML = calcItems;
 }
 
 // addition, subtraction, multiplication, and division functions
@@ -100,39 +108,3 @@ const operate = function(a, operator, b) {
 			break;
   }
 };
-
-/*
-// addition button functionality
-const additionButton = document.querySelector('.plus');
-
-additionButton.addEventListener('click', function() {
-
-  //if the user clicks on the addition operator again (or another operator) after clicking on another
-  //operand, then those two operands must be operated on and the display needs to be updated accordingly
-  if (a) {
-    b = numberStorage;
-    console.log(b);
-    mathematics = '+';
-    displayValue.textContent = operate(a, '+', b);
-    a = +(displayValue.textContent);
-  } else if (!a && displayValue.textContent.length > 0) {
-    a = numberStorage;
-    console.log(a);
-    displayValue.textContent = '';
-  }
-
-  mathematics = '+';
-  console.log(mathematics);
-});
-
-const equalsButton = document.querySelector('.equals');
-
-equalsButton.addEventListener('click', function() {
-  if (displayValue.textContent.length > 0) {
-    b = numberStorage;
-    console.log(b);
-  }
-
-  displayValue.textContent = operate(a, '+', b);
-})
-*/
