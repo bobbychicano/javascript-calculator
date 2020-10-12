@@ -117,6 +117,10 @@ button:focus {
   background-color: #B61971;
 }
 
+.decimal {
+  background-color: #B61971;
+}
+
 .digit,
 .clear,
 .equals {
