@@ -47,6 +47,13 @@ for (let i = 0; i < operatorButtons.length; i++) {
   operatorButtons[i].addEventListener('click', function () {
     operator = operatorButtons[i].value;
     console.log(operator);
+
+    if (firstNumber && secondNumber) {
+      thirdNumber = operate(+firstNumber, operator, +secondNumber);
+      render(thirdNumber);
+      firstNumber = thirdNumber;
+      secondNumber = '';
+    }
   })
 };
 
