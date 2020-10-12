@@ -20,6 +20,7 @@ clearDisplay.addEventListener('click', function() {
 	firstNumber = '';
   secondNumber = '';
   operator = '';
+  thirdNumber = '';
 });
 
 //what do I want all of the operators to do?
@@ -35,7 +36,6 @@ plusSign.addEventListener('click', function() {
     firstNumber = thirdNumber;
     secondNumber = '';
   }
-
 })
 
 //equals button functionality
@@ -49,7 +49,7 @@ function handleNumberInput(e) {
     console.log(number);
 
     if (firstNumber && operator && secondNumber.length < 9) {
-      displayValue.innerHTML = '';
+      //displayValue.innerHTML = '';
       addToActiveNumber(number);
       render(secondNumber);
     } else if (firstNumber.length < 9) {
@@ -67,8 +67,8 @@ function addToActiveNumber(number) {
 	}
 };
 
-function render(calcItems) {
-  displayValue.innerHTML = calcItems;
+function render(calculatorItems) {
+  displayValue.innerHTML = calculatorItems;
 }
 
 // addition, subtraction, multiplication, and division functions
