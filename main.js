@@ -2,9 +2,7 @@
 const displayValue = document.querySelector('.output');
 const clearDisplay = document.querySelector('.clear');
 const allDigits = document.querySelectorAll('.digit');
-const plusSign = document.querySelector('.plus');
 const equalsButton = document.querySelector('.equals');
-
 const operatorButtons = document.querySelectorAll('.sign');
 
 let firstNumber = '';
@@ -25,24 +23,7 @@ clearDisplay.addEventListener('click', function() {
   thirdNumber = '';
 });
 
-//what do I want all of the operators to do?
-
-/*
-//addition button functionality
-plusSign.addEventListener('click', function() {
-  operator = '+';
-  console.log(operator);
-
-  if (firstNumber && secondNumber) {
-    thirdNumber = operate(+firstNumber, operator, +secondNumber);
-    render(thirdNumber);
-    firstNumber = thirdNumber;
-    secondNumber = '';
-  }
-})
-*/
-
-// testing out a function on all operator buttons
+// Operator buttons functionality
 for (let i = 0; i < operatorButtons.length; i++) {
   operatorButtons[i].addEventListener('click', function () {
     operator = operatorButtons[i].value;
@@ -56,10 +37,6 @@ for (let i = 0; i < operatorButtons.length; i++) {
     }
   })
 };
-
-
-//
-
 
 //equals button functionality
 equalsButton.addEventListener('click', function() {
