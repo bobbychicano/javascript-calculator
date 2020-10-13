@@ -4,24 +4,17 @@ const clearDisplay = document.querySelector('.clear');
 const allDigits = document.querySelectorAll('.digit');
 const equalsButton = document.querySelector('.equals');
 const operatorButtons = document.querySelectorAll('.sign');
+const decimalButton = document.querySelector('.decimal');
 
 let firstNumber = '';
 let operator = '';
 let secondNumber = '';
 let thirdNumber = '';
 
+// Number buttons functionality
 for (let i = 0; i < allDigits.length; i++) {
   allDigits[i].addEventListener('click', handleNumberInput)
 };
-
-//Clear functionality
-clearDisplay.addEventListener('click', function() {
-  displayValue.innerHTML = '';
-	firstNumber = '';
-  secondNumber = '';
-  operator = '';
-  thirdNumber = '';
-});
 
 // Operator buttons functionality
 for (let i = 0; i < operatorButtons.length; i++) {
@@ -41,6 +34,32 @@ for (let i = 0; i < operatorButtons.length; i++) {
 //equals button functionality
 equalsButton.addEventListener('click', function() {
   displayValue.innerHTML = operate(+firstNumber, operator, +secondNumber);
+})
+
+//Clear functionality
+clearDisplay.addEventListener('click', function() {
+  displayValue.innerHTML = '';
+	firstNumber = '';
+  secondNumber = '';
+  operator = '';
+  thirdNumber = '';
+});
+
+//Decimal button functionality
+decimalButton.addEventListener('click', function () {
+  decimal = decimalButton.value;
+
+  if (displayValue.innerHTML.includes('.')) {
+    return;
+  } else {
+    addToActiveNumber(decimal);
+
+    if (secondNumber) {
+      render(secondNumber);
+    } else {
+      render(firstNumber);
+    }
+  }
 })
 
 //function that calls both the numberInput and the render function when button is clicked
@@ -106,5 +125,8 @@ const operate = function(a, operator, b) {
     case '/':
 			return division(a, b);
 			break;
+
+    default:
+      return;
   }
 };

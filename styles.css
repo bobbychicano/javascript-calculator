@@ -136,28 +136,3 @@ button:focus {
   column-gap: 10px;
   row-gap: 15px;
 }
-
-/*
-.sign,
-.digit,
-.clear,
-.equals {
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 6px #B0BEC5;
-  cursor: pointer;
-}
-*/
-
-/*
-.sign:active,
-.digit:active,
-.clear:active,
-.equals:active {
-  cursor: pointer;
-  color: white;
-  box-shadow: 0 3px 0 #546E7A;
-}
-*/
