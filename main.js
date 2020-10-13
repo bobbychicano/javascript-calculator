@@ -24,6 +24,9 @@ for (let i = 0; i < operatorButtons.length; i++) {
 
     if (firstNumber && secondNumber) {
       thirdNumber = operate(+firstNumber, operator, +secondNumber);
+      if (thirdNumber % 1 != 0) {
+        thirdNumber = thirdNumber.toFixed(4);
+      }
       render(thirdNumber);
       firstNumber = thirdNumber;
       secondNumber = '';
@@ -33,7 +36,20 @@ for (let i = 0; i < operatorButtons.length; i++) {
 
 //equals button functionality
 equalsButton.addEventListener('click', function() {
-  displayValue.innerHTML = operate(+firstNumber, operator, +secondNumber);
+
+  if(!secondNumber) {
+    return
+  } else {
+    let total = operate(+firstNumber, operator, +secondNumber);
+    console.log(total);
+  }
+
+
+  if (total % 1 != 0) {
+   total = total.toFixed(4);
+ }
+
+  displayValue.innerHTML = total;
 })
 
 //Clear functionality
@@ -86,8 +102,8 @@ function addToActiveNumber(number) {
 	}
 };
 
-function render(calculatorItems) {
-  displayValue.innerHTML = calculatorItems;
+function render(activeNumber) {
+  displayValue.innerHTML = activeNumber;
 }
 
 // addition, subtraction, multiplication, and division functions
@@ -123,10 +139,15 @@ const operate = function(a, operator, b) {
 			break;
 
     case '/':
-			return division(a, b);
+      if (secondNumber == 0) {
+        alert("You can't divide by zero my friend. Press C to clear.");
+      } else {
+        return division(a, b);
+      }
 			break;
 
     default:
       return;
   }
+
 };
