@@ -19,9 +19,6 @@ for (let i = 0; i < allDigits.length; i++) {
 // Operator buttons functionality
 for (let i = 0; i < operatorButtons.length; i++) {
   operatorButtons[i].addEventListener('click', function () {
-    operator = operatorButtons[i].value;
-    console.log(operator);
-
     if (firstNumber && secondNumber) {
       thirdNumber = operate(+firstNumber, operator, +secondNumber);
       if (thirdNumber % 1 != 0) {
@@ -31,25 +28,28 @@ for (let i = 0; i < operatorButtons.length; i++) {
       firstNumber = thirdNumber;
       secondNumber = '';
     }
+
+    operator = operatorButtons[i].value;
+    console.log(operator);
+
   })
 };
 
 //equals button functionality
 equalsButton.addEventListener('click', function() {
+let total = operate(+firstNumber, operator, +secondNumber);
 
   if(!secondNumber) {
     return
-  } else {
-    let total = operate(+firstNumber, operator, +secondNumber);
-    console.log(total);
   }
-
 
   if (total % 1 != 0) {
    total = total.toFixed(4);
  }
 
   displayValue.innerHTML = total;
+  firstNumber = total;
+  secondNumber = '';
 })
 
 //Clear functionality
@@ -145,9 +145,6 @@ const operate = function(a, operator, b) {
         return division(a, b);
       }
 			break;
-
-    default:
-      return;
   }
 
 };
