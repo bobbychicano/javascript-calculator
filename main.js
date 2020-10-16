@@ -43,6 +43,22 @@ document.body.addEventListener('keyup', (e) => {
     console.log(operator);
   }
 
+  if (e.key == 'Enter') {
+    let total = operate(+firstNumber, operator, +secondNumber);
+
+      if(!secondNumber) {
+        return
+      }
+
+      if (total % 1 != 0) {
+       total = total.toFixed(4);
+     }
+
+      displayValue.innerHTML = total;
+      firstNumber = total;
+      secondNumber = '';
+  }
+
 })
 
 // Keyboard equals button listener
