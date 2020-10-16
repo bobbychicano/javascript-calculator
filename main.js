@@ -1,7 +1,7 @@
 
 const displayValue = document.querySelector('.output');
 const clearDisplay = document.querySelector('.clear');
-const allDigits = document.querySelectorAll('.digit');
+const numberButtons = document.querySelectorAll('.digit');
 const equalsButton = document.querySelector('.equals');
 const operatorButtons = document.querySelectorAll('.sign');
 const decimalButton = document.querySelector('.decimal');
@@ -11,9 +11,29 @@ let operator = '';
 let secondNumber = '';
 let thirdNumber = '';
 
+// Keyboard event listeners
+
+document.body.addEventListener('keyup', (e) => {
+  if (e.key >= 0 && e.key <= 9) {
+
+    let number = Number(e.key);
+    console.log(number);
+
+    if (firstNumber && operator && secondNumber.length < 9) {
+      addToActiveNumber(number);
+      render(secondNumber);
+    } else if (firstNumber.length < 9) {
+      addToActiveNumber(number);
+      render(firstNumber);
+    }
+
+  }
+})
+
+
 // Number buttons functionality
-for (let i = 0; i < allDigits.length; i++) {
-  allDigits[i].addEventListener('click', handleNumberInput)
+for (let i = 0; i < numberButtons.length; i++) {
+  numberButtons[i].addEventListener('click', handleNumberInput)
 };
 
 // Operator buttons functionality
@@ -35,7 +55,7 @@ for (let i = 0; i < operatorButtons.length; i++) {
   })
 };
 
-//equals button functionality
+// Equals button functionality
 equalsButton.addEventListener('click', function() {
 let total = operate(+firstNumber, operator, +secondNumber);
 
@@ -52,7 +72,7 @@ let total = operate(+firstNumber, operator, +secondNumber);
   secondNumber = '';
 })
 
-//Clear functionality
+// Clear button functionality
 clearDisplay.addEventListener('click', function() {
   displayValue.innerHTML = '';
 	firstNumber = '';
@@ -61,7 +81,7 @@ clearDisplay.addEventListener('click', function() {
   thirdNumber = '';
 });
 
-//Decimal button functionality
+// Decimal button functionality
 decimalButton.addEventListener('click', function () {
   decimal = decimalButton.value;
 
@@ -78,7 +98,7 @@ decimalButton.addEventListener('click', function () {
   }
 })
 
-//function that calls both the numberInput and the render function when button is clicked
+// Function to handle number storage and number display
 function handleNumberInput(e) {
   const number = Number(e.target.value);
     console.log(number);
@@ -93,7 +113,7 @@ function handleNumberInput(e) {
     }
 };
 
-//Number storage function
+// Number storage function
 function addToActiveNumber(number) {
 	if (firstNumber && operator) {
 		secondNumber += number;
@@ -102,11 +122,12 @@ function addToActiveNumber(number) {
 	}
 };
 
+// Render display function
 function render(activeNumber) {
   displayValue.innerHTML = activeNumber;
 }
 
-// addition, subtraction, multiplication, and division functions
+// Addition, subtraction, multiplication, and division functions
 const addition = function(a, b) {
   return a + b;
 };
@@ -146,5 +167,4 @@ const operate = function(a, operator, b) {
       }
 			break;
   }
-
 };
