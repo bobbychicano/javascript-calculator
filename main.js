@@ -11,7 +11,7 @@ let operator = '';
 let secondNumber = '';
 let thirdNumber = '';
 
-// Keyboard event listeners
+// Keyboard number event listeners
 
 document.body.addEventListener('keyup', (e) => {
   if (e.key >= 0 && e.key <= 9) {
@@ -26,9 +26,30 @@ document.body.addEventListener('keyup', (e) => {
       addToActiveNumber(number);
       render(firstNumber);
     }
+  };
 
+  if (e.key == '+' || e.key == '/' || e.key == '-' || e.key == '*') {
+    if (firstNumber && secondNumber) {
+      thirdNumber = operate(+firstNumber, operator, +secondNumber);
+      if (thirdNumber % 1 != 0) {
+        thirdNumber = thirdNumber.toFixed(4);
+      }
+      render(thirdNumber);
+      firstNumber = thirdNumber;
+      secondNumber = '';
+    }
+
+    operator = e.key;
+    console.log(operator);
   }
+
 })
+
+// Keyboard equals button listener
+
+// Keyboard clear event listener
+
+// Keyboard decimal event listener
 
 
 // Number buttons functionality
