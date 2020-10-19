@@ -14,6 +14,8 @@ let thirdNumber = '';
 // Keyboard number event listeners
 
 document.body.addEventListener('keyup', (e) => {
+
+  // Keyboard numbers functionality
   if (e.key >= 0 && e.key <= 9) {
 
     let number = Number(e.key);
@@ -28,6 +30,7 @@ document.body.addEventListener('keyup', (e) => {
     }
   };
 
+  // Keyboard operators functionality
   if (e.key == '+' || e.key == '/' || e.key == '-' || e.key == '*') {
     if (firstNumber && secondNumber) {
       thirdNumber = operate(+firstNumber, operator, +secondNumber);
@@ -43,10 +46,11 @@ document.body.addEventListener('keyup', (e) => {
     console.log(operator);
   }
 
-  if (e.key == 'Enter') {
+  // Keybloard enter or equals functionality
+  if (e.key == '=') {
     let total = operate(+firstNumber, operator, +secondNumber);
 
-      if(!secondNumber) {
+      if(secondNumber == '') {
         return
       }
 
@@ -59,14 +63,35 @@ document.body.addEventListener('keyup', (e) => {
       secondNumber = '';
   }
 
+  // Keyboard clear functionality
+  if (e.key == 'c') {
+    displayValue.innerHTML = '';
+  	firstNumber = '';
+    secondNumber = '';
+    operator = '';
+    thirdNumber = '';
+  }
+
+  // Keyboard decimal functionality
+  if (e.key == '.') {
+    decimal = e.key;
+
+    if (displayValue.innerHTML == '') {
+      return;
+    } else if (displayValue.innerHTML.includes('.')) {
+      return;
+    } else {
+      addToActiveNumber(decimal);
+
+      if (secondNumber) {
+        render(secondNumber);
+      } else {
+        render(firstNumber);
+      }
+    }
+  }
+
 })
-
-// Keyboard equals button listener
-
-// Keyboard clear event listener
-
-// Keyboard decimal event listener
-
 
 // Number buttons functionality
 for (let i = 0; i < numberButtons.length; i++) {
@@ -122,7 +147,9 @@ clearDisplay.addEventListener('click', function() {
 decimalButton.addEventListener('click', function () {
   decimal = decimalButton.value;
 
-  if (displayValue.innerHTML.includes('.')) {
+  if (displayValue.innerHTML == '') {
+    return;
+  } else if (displayValue.innerHTML.includes('.')) {
     return;
   } else {
     addToActiveNumber(decimal);
